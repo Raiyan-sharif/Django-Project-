@@ -18,5 +18,5 @@ from django.urls import path
 from fileupload import views as plagarismView
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', plagarismView.index, name='index' ),
+    path('', plagarismView.upload_file, name='index' ),
 ]
