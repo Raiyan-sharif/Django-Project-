@@ -4,16 +4,9 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from .models import FilesAdmin
 import math
-
 import string
-
 import sys
 
-
-# reading the text file
-# This functio will return a
-# list of the lines of text
-# in the file.
 
 def read_file(filename):
     try:
@@ -30,7 +23,7 @@ def read_file(filename):
 
         print("Error opening or reading input file: ", filename)
 
-        sys.exit()
+        
 
     # splitting the text lines into words
 
@@ -139,6 +132,7 @@ def documentSimilarity(filename_1, filename_2):
 
 def home(request):
     context={'file':FilesAdmin.objects.all()}
+    # documentSimilarity('../media_cdn/media/1.txt','../media_cdn/media/1_agqz27c.txt')
     return render(request,'blog/home.html',context)
 
 def download(request,path):
@@ -147,7 +141,7 @@ def download(request,path):
         with open(file_path,'rb') as fh:
             response=HttpResponse(fh.read(),content_type="application/adminupload")
             response['Content-Disposition']='inline;filename'+os.path.basename(file_path)
-            response['Check-plagiarism']=documentSimilarity('1.txt','2.txt')
+            # documentSimilarity('..\media_cdn\media\1.txt','..\media_cdn\media\1_agqz27c.txt')
             return response
 
     raise Http404
